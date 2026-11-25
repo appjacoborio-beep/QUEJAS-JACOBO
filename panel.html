@@ -236,6 +236,8 @@
   @keyframes aparecer-fondo { from { opacity:0; } to { opacity:1; } }
   #detalle h2 { margin:0 0 4px; font-size:24px; font-weight:700; letter-spacing:-.02em; padding-right:44px; }
   #detalle .sub { color:var(--secundario); font-size:13.5px; margin-bottom:16px; }
+  #detalle .foto { display:block; margin:0 0 14px; }
+  #detalle .foto img { display:block; width:100%; max-height:320px; object-fit:cover; border-radius:20px; }
   #detalle .mensaje { padding:16px; border-radius:20px; background:var(--suave); font-size:15px; white-space:pre-wrap; overflow-wrap:anywhere; margin-bottom:14px; }
   #detalle dl { display:grid; grid-template-columns:150px 1fr; gap:9px 12px; font-size:14.5px; margin:0 0 18px; padding:16px; border-radius:20px; background:var(--suave); }
   #detalle dt { color:var(--secundario); font-weight:600; font-size:13.5px; }
@@ -384,7 +386,7 @@ function pintar() {
   $('lista').innerHTML = lista.length ? lista.map(x => `
     <tr data-id="${esc(x.Folio)}">
       <td>${esc(String(x.Fecha).slice(0, 10))}</td>
-      <td>${chip('t', x.Tipo)}${x.Telefono ? '<span class="tel" title="Dejó teléfono">📞</span>' : ''}</td>
+      <td>${chip('t', x.Tipo)}${x.Telefono ? '<span class="tel" title="Dejó teléfono">📞</span>' : ''}${x.Foto ? '<span class="tel" title="Trae foto">📷</span>' : ''}</td>
       <td>${esc(x.Sucursal)}</td>
       <td>${esc(x.Area)}</td>
       <td>${esc(x.Mensaje)}</td>
@@ -422,6 +424,7 @@ function abrirDetalle(id) {
     <h2>${esc(x.Folio)}</h2>
     <div class="sub">Recibido: ${esc(x.Fecha)}</div>
     <div class="mensaje">${esc(x.Mensaje)}</div>
+    ${x.Foto ? `<a class="foto" href="${esc(x.Foto)}" target="_blank" rel="noopener"><img src="${esc(x.Foto)}" alt="Foto del cliente"></a>` : ''}
     <dl>${filas.map(([k, v]) => `<dt>${k}</dt><dd>${v}</dd>`).join('')}</dl>
     <label for="dEtapa">Etapa</label>
     <select id="dEtapa">${ETAPAS.map(e => `<option ${e === x.Etapa ? 'selected' : ''}>${e}</option>`).join('')}</select>
