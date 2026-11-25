@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>Quejas y sugerencias — Panel Jacobo</title>
+<style>
+  .oculto { display:none !important; }
+
+  @media screen {
+  :root {
+    --fondo:#f1f2f6;
+    --texto:#1c1c1e; --secundario:#5f5f66; --lineas:rgba(60,60,67,.14); --suave:rgba(120,120,128,.12);
+    --acento:#0a7aff; --acento-a:#4a9bff; --acento-b:#0a7aff;
+    --verde:#34a56f; --ambar:#ff9f0a; --alerta:#ff3b30;
+    --chip-verde:#1f7a4f; --chip-ambar:#a35f00; --chip-rojo:#d70015; --chip-azul:#0062d1;
+
+    --vidrio:linear-gradient(135deg, rgba(255,255,255,.62) 0%, rgba(255,255,255,.22) 55%, rgba(255,255,255,.38) 100%);
+    --vidrio-borde:rgba(255,255,255,.7);
+    --vidrio-sombra:inset 0 1.5px 0 rgba(255,255,255,.95), inset 0 -1px 0 rgba(255,255,255,.35), inset 1.5px 0 0 rgba(255,255,255,.55), inset 0 0 22px rgba(255,255,255,.28), 0 14px 44px rgba(40,60,130,.14), 0 2px 8px rgba(40,60,130,.06);
+    --btn2-fondo:linear-gradient(135deg, rgba(255,255,255,.85), rgba(255,255,255,.5));
+    --btn2-borde:rgba(255,255,255,.7);
+    --btn2-sombra:inset 0 1px 0 #fff, 0 4px 14px rgba(40,60,130,.1);
+    --campo:rgba(255,255,255,.55);
+    --campo-sombra:inset 0 1px 2px rgba(60,60,67,.12), inset 0 0 0 1px rgba(60,60,67,.06);
+    --foco:0 0 0 3px rgba(10,122,255,.25);
+    --flecha:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none' stroke='%235f5f66' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M1 1.5l5 5 5-5'/%3E%3C/svg%3E");
+    color-scheme:light;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --fondo:#0b0c10;
+      --texto:#f2f2f7; --secundario:#a1a1aa; --lineas:rgba(255,255,255,.1); --suave:rgba(120,120,128,.24);
+      --acento:#3d9bff; --acento-a:#6fb4ff; --acento-b:#3d9bff;
+      --chip-verde:#5fd39a; --chip-ambar:#ffc261; --chip-rojo:#ff7a72; --chip-azul:#7ab8ff;
+      --vidrio:linear-gradient(135deg, rgba(255,255,255,.12) 0%, rgba(255,255,255,.04) 55%, rgba(255,255,255,.08) 100%);
+      --vidrio-borde:rgba(255,255,255,.12);
+      --vidrio-sombra:inset 0 1px 0 rgba(255,255,255,.1), 0 14px 44px rgba(0,0,0,.5);
+      --btn2-fondo:linear-gradient(135deg, rgba(255,255,255,.14), rgba(255,255,255,.06));
+      --btn2-borde:rgba(255,255,255,.12);
+      --btn2-sombra:inset 0 1px 0 rgba(255,255,255,.12), 0 4px 14px rgba(0,0,0,.35);
+      --campo:rgba(255,255,255,.07);
+      --campo-sombra:inset 0 1px 2px rgba(0,0,0,.35), inset 0 0 0 1px rgba(255,255,255,.06);
+      --foco:0 0 0 3px rgba(61,155,255,.35);
+      --flecha:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none' stroke='%23a1a1aa' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M1 1.5l5 5 5-5'/%3E%3C/svg%3E");
+      color-scheme:dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --fondo:#0b0c10;
+    --texto:#f2f2f7; --secundario:#a1a1aa; --lineas:rgba(255,255,255,.1); --suave:rgba(120,120,128,.24);
+    --acento:#3d9bff; --acento-a:#6fb4ff; --acento-b:#3d9bff;
+    --chip-verde:#5fd39a; --chip-ambar:#ffc261; --chip-rojo:#ff7a72; --chip-azul:#7ab8ff;
+    --vidrio:linear-gradient(135deg, rgba(255,255,255,.12) 0%, rgba(255,255,255,.04) 55%, rgba(255,255,255,.08) 100%);
+    --vidrio-borde:rgba(255,255,255,.12);
+    --vidrio-sombra:inset 0 1px 0 rgba(255,255,255,.1), 0 14px 44px rgba(0,0,0,.5);
+    --btn2-fondo:linear-gradient(135deg, rgba(255,255,255,.14), rgba(255,255,255,.06));
+    --btn2-borde:rgba(255,255,255,.12);
+    --btn2-sombra:inset 0 1px 0 rgba(255,255,255,.12), 0 4px 14px rgba(0,0,0,.35);
+    --campo:rgba(255,255,255,.07);
+    --campo-sombra:inset 0 1px 2px rgba(0,0,0,.35), inset 0 0 0 1px rgba(255,255,255,.06);
+    --foco:0 0 0 3px rgba(61,155,255,.35);
+    --flecha:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none' stroke='%23a1a1aa' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M1 1.5l5 5 5-5'/%3E%3C/svg%3E");
+    color-scheme:dark;
+  }
+
+  :root { --fuerte:linear-gradient(135deg, rgba(255,255,255,.9), rgba(255,255,255,.72) 55%, rgba(255,255,255,.82)); }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --fuerte:linear-gradient(135deg, rgba(40,42,50,.92), rgba(28,29,35,.86)); } }
+  :root[data-theme="dark"] { --fuerte:linear-gradient(135deg, rgba(40,42,50,.92), rgba(28,29,35,.86)); }
+
+  * { box-sizing:border-box; }
+  html { -webkit-text-size-adjust:100%; }
+  body {
+    margin:0; background:var(--fondo); color:var(--texto);
+    font-family:-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Helvetica, Arial, sans-serif;
+    font-size:15px; line-height:1.45; -webkit-font-smoothing:antialiased; overflow-x:hidden;
+  }
+  svg.ico { width:20px; height:20px; fill:none; stroke:currentColor; stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round; flex:none; }
+
+  /* ---------- Navegación: celular (barra inferior) ---------- */
+  header { padding:22px 18px 4px; text-align:center; }
+  header h1 { margin:0; font-size:22px; font-weight:700; letter-spacing:-.02em; line-height:1.1; }
+  header h1 small { display:block; margin-top:4px; font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--secundario); }
+  #usuarioBox {
+    position:fixed; left:12px; right:12px; bottom:12px; z-index:20;
+    display:flex; justify-content:space-around; align-items:center; gap:4px; padding:8px;
+    border-radius:999px; background:var(--fuerte); border:1px solid var(--vidrio-borde);
+    box-shadow:var(--vidrio-sombra); -webkit-backdrop-filter:blur(22px) saturate(180%); backdrop-filter:blur(22px) saturate(180%);
+  }
+  #usuarioNombre { display:none; }
+  #usuarioBox button {
+    flex:1; display:flex; flex-direction:column; align-items:center; gap:3px; padding:6px 4px;
+    background:none; border:0; border-radius:999px; color:var(--secundario); font:inherit; font-size:10.5px; font-weight:600; cursor:pointer;
+    transition:background .25s ease, color .25s ease, transform .12s ease;
+  }
+  #usuarioBox button:hover { color:var(--acento); }
+  #usuarioBox button:active { transform:scale(.97); }
+
+  main { max-width:1200px; margin:0 auto; padding:16px 16px 120px; }
+
+  /* ---------- Navegación: escritorio (barra lateral) ---------- */
+  @media (min-width:900px) {
+    header {
+      position:fixed; top:16px; left:16px; bottom:16px; width:248px; z-index:20; text-align:left;
+      padding:26px 14px 14px; border-radius:32px; display:flex; flex-direction:column;
+      background:var(--vidrio); border:1px solid var(--vidrio-borde); box-shadow:var(--vidrio-sombra);
+      -webkit-backdrop-filter:blur(22px) saturate(180%); backdrop-filter:blur(22px) saturate(180%);
+    }
+    header h1 { padding:0 10px 22px; }
+    #usuarioBox {
+      position:static; flex-direction:column; align-items:stretch; justify-content:flex-start; flex:1;
+      padding:0; background:none; border:0; box-shadow:none; -webkit-backdrop-filter:none; backdrop-filter:none; border-radius:0;
+    }
+    #usuarioBox button { flex:none; flex-direction:row; gap:12px; padding:11px 14px; font-size:15px; font-weight:600; color:var(--texto); }
+    #usuarioBox button:hover { background:rgba(10,122,255,.13); color:var(--acento); }
+    #usuarioNombre {
+      display:flex; align-items:center; gap:10px; order:9; margin-top:auto; padding:12px 14px;
+      border-radius:999px; background:var(--suave); font-size:14px; font-weight:600; color:var(--secundario);
+    }
+    #usuarioNombre::before { content:'👤'; }
+    main { padding:28px 32px 48px 296px; max-width:none; }
+  }
+
+  /* ---------- Título del panel ---------- */
+  .titulo-panel { margin:6px 0 20px; }
+  .titulo-panel h2 { margin:0; font-size:clamp(30px, 1.6vw + 22px, 36px); font-weight:700; letter-spacing:-.03em; line-height:1.1; }
+  .kw { color:var(--acento); }
+  .titulo-panel p { margin:8px 0 0; color:var(--secundario); }
+
+  /* ---------- Vidrio ---------- */
+  #login, .etapa-chip, #lista tr, thead tr {
+    background:var(--vidrio); border:1px solid var(--vidrio-borde); box-shadow:var(--vidrio-sombra);
+  }
+
+  /* ---------- Campos y botones ---------- */
+  input, select, textarea {
+    padding:11px 12px; border:0; border-radius:14px; font:inherit; font-size:15px; color:var(--texto);
+    background:var(--campo); box-shadow:var(--campo-sombra); transition:box-shadow .25s ease;
+  }
+  input::placeholder, textarea::placeholder { color:var(--secundario); opacity:.7; }
+  select { -webkit-appearance:none; appearance:none; padding-right:36px; background:var(--flecha) no-repeat right 14px center / 12px 8px, var(--campo); }
+  select option { color:#1c1c1e; }
+  input:focus, select:focus, textarea:focus { outline:none; box-shadow:var(--campo-sombra), var(--foco); }
+
+  button.prim, #login button {
+    padding:11px 20px; border:0; border-radius:999px; cursor:pointer; font:inherit; font-size:15px; font-weight:650; color:#fff;
+    background:linear-gradient(180deg, var(--acento-a), var(--acento-b));
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.35), 0 6px 18px rgba(10,122,255,.28);
+    transition:transform .12s ease, filter .12s ease, opacity .25s ease;
+  }
+  button.prim:active, .wa:active, .etapa-chip:active, #lista tr:active { transform:scale(.97); filter:brightness(.94); }
+  button.prim:disabled { opacity:.6; cursor:wait; }
+  button:focus-visible, a:focus-visible { outline:none; box-shadow:var(--foco); }
+
+  .error { margin-top:12px; padding:12px 16px; border-radius:16px; background:rgba(255,59,48,.14); color:var(--chip-rojo); font-size:14px; font-weight:600; }
+  .error:empty { display:none; }
+
+  /* ---------- Login ---------- */
+  #login { max-width:380px; margin:40px auto; padding:30px 26px; border-radius:26px; }
+  #login h2 { margin:0 0 20px; font-size:clamp(30px, 1.6vw + 22px, 36px); font-weight:700; letter-spacing:-.03em; line-height:1.1; text-align:center; }
+  #login input { width:100%; margin-bottom:12px; }
+  #login button { width:100%; margin-top:4px; }
+
+  /* ---------- Etapas ---------- */
+  .etapas { display:grid; grid-template-columns:repeat(auto-fill, minmax(118px, 1fr)); gap:10px; margin-bottom:16px; }
+  .etapa-chip { border-radius:22px; padding:12px 16px; cursor:pointer; transition:transform .12s ease, filter .12s ease, background .25s ease; }
+  .etapa-chip b { display:block; font-size:24px; font-weight:700; letter-spacing:-.02em; }
+  .etapa-chip span { font-size:13px; font-weight:600; color:var(--secundario); }
+  .etapa-chip.activa { background:linear-gradient(180deg, var(--acento-a), var(--acento-b)); border-color:transparent; color:#fff; box-shadow:inset 0 1px 0 rgba(255,255,255,.35), 0 6px 18px rgba(10,122,255,.28); }
+  .etapa-chip.activa span { color:rgba(255,255,255,.85); }
+
+  /* ---------- Filtros ---------- */
+  .filtros { display:flex; flex-wrap:wrap; gap:10px; margin-bottom:14px; }
+  .buscador { flex:2 1 240px; position:relative; display:flex; }
+  .buscador svg { position:absolute; left:14px; top:50%; transform:translateY(-50%); color:var(--secundario); width:18px; height:18px; pointer-events:none; }
+  .buscador input { width:100%; border-radius:999px; padding-left:42px; }
+  .filtros select {
+    flex:1 1 150px; min-width:0; border-radius:999px; font-weight:600; color:var(--acento);
+    background:var(--flecha) no-repeat right 14px center / 12px 8px, var(--btn2-fondo);
+    border:1px solid var(--btn2-borde); box-shadow:var(--btn2-sombra);
+  }
+
+  /* ---------- Lista (renglones de vidrio) ---------- */
+  table, thead, tbody, tr, th, td { display:block; }
+  table { border-collapse:separate; }
+  thead tr, #lista tr {
+    display:grid; align-items:center; gap:4px 12px;
+    grid-template-columns:92px 118px 84px minmax(0,1fr) minmax(0,2.2fr) 112px;
+    padding:12px 16px; border-radius:20px; margin-bottom:8px;
+  }
+  thead tr { background:none; border:0; box-shadow:none; padding-top:0; padding-bottom:4px; margin-bottom:2px; }
+  th { font-size:12px; font-weight:700; letter-spacing:.04em; text-transform:uppercase; color:var(--secundario); text-align:left; }
+  #lista tr { cursor:pointer; font-size:14.5px; transition:transform .12s ease, filter .12s ease; }
+  #lista tr:hover { filter:brightness(1.02); }
+  #lista td { min-width:0; overflow-wrap:anywhere; }
+  #lista td:nth-child(1) { color:var(--secundario); font-size:13.5px; }
+  #lista td:nth-child(3) { font-weight:650; }
+  #lista td:nth-child(5) { color:var(--secundario); overflow:hidden; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; }
+  #lista td.vacio { grid-column:1 / -1; text-align:center; padding:20px; color:var(--secundario); }
+  #lista tr:has(td.vacio) { cursor:default; }
+
+  @media (max-width:899px) {
+    thead { display:none; }
+    #lista tr {
+      grid-template-columns:auto 1fr auto; padding:14px 16px;
+      grid-template-areas:"tipo suc etapa" "msg msg msg" "meta meta meta";
+    }
+    #lista td:nth-child(2) { grid-area:tipo; }
+    #lista td:nth-child(3) { grid-area:suc; }
+    #lista td:nth-child(6) { grid-area:etapa; justify-self:end; }
+    #lista td:nth-child(5) { grid-area:msg; color:var(--texto); }
+    #lista td:nth-child(1) { grid-area:meta; }
+    #lista td:nth-child(4) { display:none; }
+  }
+
+  /* ---------- Chips ---------- */
+  .badge { display:inline-block; padding:4px 11px; border-radius:999px; font-size:12.5px; font-weight:700; white-space:nowrap; }
+  .b-Nueva { background:rgba(10,122,255,.15); color:var(--chip-azul); }
+  .b-En-revisión { background:rgba(255,159,10,.18); color:var(--chip-ambar); }
+  .b-Atendida { background:rgba(52,165,111,.18); color:var(--chip-verde); }
+  .t-Queja { background:rgba(255,59,48,.15); color:var(--chip-rojo); }
+  .t-Sugerencia { background:rgba(255,159,10,.18); color:var(--chip-ambar); }
+  .t-Felicitación { background:rgba(52,165,111,.18); color:var(--chip-verde); }
+  .tel { margin-left:6px; font-size:13px; }
+
+  /* ---------- Ventana de detalle ---------- */
+  #fondo { position:fixed; inset:0; z-index:30; background:rgba(24,28,44,.26); -webkit-backdrop-filter:blur(22px) saturate(180%); backdrop-filter:blur(22px) saturate(180%); animation:aparecer-fondo .3s ease; }
+  #detalle {
+    position:fixed; z-index:31; top:12px; right:12px; bottom:12px; width:min(500px, calc(100% - 24px));
+    overflow-y:auto; padding:24px 22px; border-radius:32px;
+    background:var(--fuerte); border:1px solid var(--vidrio-borde); box-shadow:0 30px 80px rgba(20,30,80,.28);
+    animation:aparecer .3s ease;
+  }
+  @keyframes aparecer { from { opacity:0; transform:translateY(8px) scale(.98); } to { opacity:1; transform:none; } }
+  @keyframes aparecer-fondo { from { opacity:0; } to { opacity:1; } }
+  #detalle h2 { margin:0 0 4px; font-size:24px; font-weight:700; letter-spacing:-.02em; padding-right:44px; }
+  #detalle .sub { color:var(--secundario); font-size:13.5px; margin-bottom:16px; }
+  #detalle .mensaje { padding:16px; border-radius:20px; background:var(--suave); font-size:15px; white-space:pre-wrap; overflow-wrap:anywhere; margin-bottom:14px; }
+  #detalle dl { display:grid; grid-template-columns:150px 1fr; gap:9px 12px; font-size:14.5px; margin:0 0 18px; padding:16px; border-radius:20px; background:var(--suave); }
+  #detalle dt { color:var(--secundario); font-weight:600; font-size:13.5px; }
+  #detalle dd { margin:0; overflow-wrap:anywhere; }
+  #detalle label { display:block; font-size:13px; font-weight:700; color:var(--secundario); margin:14px 0 7px; }
+  #detalle select, #detalle textarea { width:100%; }
+  #detalle textarea { min-height:100px; resize:vertical; }
+  .cerrar {
+    position:absolute; top:18px; right:18px; width:36px; height:36px; border-radius:999px; border:1px solid var(--btn2-borde);
+    background:var(--btn2-fondo); box-shadow:var(--btn2-sombra); color:var(--secundario); font-size:22px; line-height:1; cursor:pointer;
+    display:flex; align-items:center; justify-content:center; transition:transform .12s ease;
+  }
+  .cerrar:active { transform:scale(.94); }
+  .acciones { display:flex; gap:10px; margin-top:16px; flex-wrap:wrap; }
+  .acciones > * { flex:1 1 auto; text-align:center; }
+  .wa {
+    display:inline-block; padding:11px 18px; border-radius:999px; color:#fff; text-decoration:none; font-weight:650;
+    background:linear-gradient(180deg, #47b880, #34a56f); box-shadow:inset 0 1px 0 rgba(255,255,255,.35), 0 6px 18px rgba(52,165,111,.28);
+    transition:transform .12s ease, filter .12s ease;
+  }
+  .meta { font-size:12.5px; color:var(--secundario); margin-top:12px; }
+
+  @media (max-width:600px) {
+    #detalle { top:auto; max-height:calc(100% - 24px); }
+    #detalle dl { grid-template-columns:1fr; gap:2px; }
+    #detalle dd { margin-bottom:8px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { transition:none !important; animation:none !important; }
+    button.prim:active, .wa:active, .etapa-chip:active, #lista tr:active, #usuarioBox button:active, .cerrar:active { transform:none; }
+  }
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>Jacobo<small>Quejas y sugerencias</small></h1>
+  <div id="usuarioBox" class="oculto">
+    <span id="usuarioNombre"></span>
+    <button onclick="cargar()"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11a8 8 0 1 0-2.3 5.7"/><path d="M20 4v7h-7"/></svg><span>Actualizar</span></button>
+    <button onclick="salir()"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 4h3a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-3"/><path d="M10 16l-4-4 4-4"/><path d="M6 12h10"/></svg><span>Salir</span></button>
+  </div>
+</header>
+
+<main>
+  <form id="login">
+    <h2>Acceso</h2>
+    <input id="usuario" placeholder="Usuario" autocomplete="username">
+    <input id="contrasena" type="password" placeholder="Contraseña" autocomplete="current-password">
+    <button class="prim" id="btnLogin">Entrar</button>
+    <div class="error" id="loginError"></div>
+  </form>
+
+  <section id="panel" class="oculto">
+    <div class="titulo-panel">
+      <h2>Buzón de <span class="kw">clientes</span></h2>
+      <p>Quejas, sugerencias y felicitaciones recibidas, de la más reciente a la más antigua.</p>
+    </div>
+    <div class="etapas" id="etapas"></div>
+    <div class="filtros">
+      <label class="buscador"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2"/></svg><input id="buscar" placeholder="Buscar en mensaje, nombre, teléfono o folio"></label>
+      <select id="fSucursal"><option value="">Todas las sucursales</option><option>Río</option><option>Otay</option><option>Monarca</option></select>
+      <select id="fTipo"><option value="">Todos los tipos</option><option>Queja</option><option>Sugerencia</option><option>Felicitación</option></select>
+      <select id="fArea"><option value="">Todas las áreas</option><option>Atención al cliente</option><option>Producto</option><option>Limpieza</option><option>Tiempo de espera</option><option>Precio</option><option>Otro</option></select>
+    </div>
+    <table>
+      <thead><tr>
+        <th>Fecha</th><th>Tipo</th><th>Sucursal</th><th>Área</th><th>Mensaje</th><th>Etapa</th>
+      </tr></thead>
+      <tbody id="lista"></tbody>
+    </table>
+  </section>
+</main>
+
+<div id="fondo" class="oculto" onclick="cerrarDetalle()"></div>
+<aside id="detalle" class="oculto"></aside>
+
+<script>
+const API_URL = 'https://script.google.com/macros/s/AKfycbyWdMX5XAaya5YGrLiL7jANeoGh5SCPH5bPSayIwBTeqKIoigFOuOOUXvUooE0vyH2Zrw/exec';
+const ETAPAS = ['Nueva', 'En revisión', 'Atendida'];
+
+let cred = null;
+let registros = [];
+let filtroEtapa = '';
+
+const $ = id => document.getElementById(id);
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const chip = (pre, v) => `<span class="badge ${pre}-${esc(v).replace(/ /g,'-')}">${esc(v)}</span>`;
+
+async function api(body) {
+  const r = await fetch(API_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+    body: JSON.stringify({ ...body, ...cred })
+  }).then(r => r.json());
+  if (!r.ok) throw new Error(r.error || 'Error');
+  return r;
+}
+
+$('login').addEventListener('submit', async e => {
+  e.preventDefault();
+  $('loginError').textContent = '';
+  cred = { usuario: $('usuario').value.trim(), contrasena: $('contrasena').value };
+  $('btnLogin').disabled = true;
+  try {
+    await cargar();
+    $('login').classList.add('oculto');
+    $('panel').classList.remove('oculto');
+    $('usuarioBox').classList.remove('oculto');
+    $('usuarioNombre').textContent = cred.usuario;
+  } catch (err) {
+    cred = null;
+    $('loginError').textContent = err.message;
+  } finally {
+    $('btnLogin').disabled = false;
+  }
+});
+
+function salir() {
+  cred = null; registros = [];
+  $('contrasena').value = '';
+  $('panel').classList.add('oculto');
+  $('usuarioBox').classList.add('oculto');
+  $('login').classList.remove('oculto');
+}
+
+async function cargar() {
+  const r = await api({ accion: 'listar' });
+  registros = r.registros;
+  pintar();
+}
+
+function pintar() {
+  const q = $('buscar').value.trim().toLowerCase();
+  const s = $('fSucursal').value, t = $('fTipo').value, a = $('fArea').value;
+  const base = registros.filter(x =>
+    (!s || x.Sucursal === s) && (!t || x.Tipo === t) && (!a || x.Area === a) &&
+    (!q || [x.Mensaje, x.Nombre, x.Telefono, x.Folio].some(v => String(v).toLowerCase().includes(q))));
+
+  $('etapas').innerHTML = [['', 'Todas', base.length], ...ETAPAS.map(e => [e, e, base.filter(x => x.Etapa === e).length])]
+    .map(([val, txt, n]) => `<div class="etapa-chip ${filtroEtapa === val ? 'activa' : ''}" data-e="${esc(val)}"><b>${n}</b><span>${esc(txt)}</span></div>`).join('');
+  $('etapas').querySelectorAll('.etapa-chip').forEach(ch => ch.onclick = () => { filtroEtapa = ch.dataset.e; pintar(); });
+
+  const lista = base.filter(x => !filtroEtapa || x.Etapa === filtroEtapa);
+  $('lista').innerHTML = lista.length ? lista.map(x => `
+    <tr data-id="${esc(x.Folio)}">
+      <td>${esc(String(x.Fecha).slice(0, 10))}</td>
+      <td>${chip('t', x.Tipo)}${x.Telefono ? '<span class="tel" title="Dejó teléfono">📞</span>' : ''}</td>
+      <td>${esc(x.Sucursal)}</td>
+      <td>${esc(x.Area)}</td>
+      <td>${esc(x.Mensaje)}</td>
+      <td>${chip('b', x.Etapa)}</td>
+    </tr>`).join('') : '<tr><td colspan="6" class="vacio">Sin registros con estos filtros</td></tr>';
+  $('lista').querySelectorAll('tr[data-id]').forEach(tr => tr.onclick = () => abrirDetalle(tr.dataset.id));
+}
+
+['buscar', 'fSucursal', 'fTipo', 'fArea'].forEach(id => $(id).addEventListener('input', pintar));
+
+function mensajeWA(x) {
+  const hola = 'Hola' + (x.Nombre ? ' ' + x.Nombre.split(' ')[0] : '') + ', te escribimos de Pastelería y Panadería Jacobo.';
+  const ref = ` Recibimos tu ${x.Tipo.toLowerCase()} (folio ${x.Folio}) sobre tu visita a Sucursal ${x.Sucursal}.`;
+  const cuerpo = {
+    'Queja': ' Lamentamos mucho lo ocurrido y queremos darle seguimiento. ¿Nos podrías contar un poco más para ayudarte?',
+    'Sugerencia': ' Muchas gracias por tomarte el tiempo de compartirla; ya la estamos revisando con el equipo.',
+    'Felicitación': ' ¡Muchas gracias! Ya se la hicimos llegar al equipo; nos alegra mucho que hayas tenido una buena experiencia.'
+  }[x.Tipo] || '';
+  return hola + ref + cuerpo;
+}
+
+function abrirDetalle(id) {
+  const x = registros.find(r => r.Folio === id);
+  if (!x) return;
+  const filas = [
+    ['Tipo', chip('t', x.Tipo)],
+    ['Sucursal', esc(x.Sucursal)],
+    ['Área', esc(x.Area)],
+    ['Fecha de la visita', esc(x.FechaVisita) || '—'],
+    ['Nombre', esc(x.Nombre) || 'Anónimo'],
+    ['Teléfono', esc(x.Telefono) || '—']
+  ];
+  $('detalle').innerHTML = `
+    <button class="cerrar" onclick="cerrarDetalle()" aria-label="Cerrar">×</button>
+    <h2>${esc(x.Folio)}</h2>
+    <div class="sub">Recibido: ${esc(x.Fecha)}</div>
+    <div class="mensaje">${esc(x.Mensaje)}</div>
+    <dl>${filas.map(([k, v]) => `<dt>${k}</dt><dd>${v}</dd>`).join('')}</dl>
+    <label for="dEtapa">Etapa</label>
+    <select id="dEtapa">${ETAPAS.map(e => `<option ${e === x.Etapa ? 'selected' : ''}>${e}</option>`).join('')}</select>
+    <label for="dNotas">Notas internas</label>
+    <textarea id="dNotas">${esc(x.Notas)}</textarea>
+    <div class="acciones">
+      <button class="prim" id="dGuardar">Guardar</button>
+      ${x.Telefono ? `<a class="wa" href="https://wa.me/52${esc(x.Telefono)}?text=${encodeURIComponent(mensajeWA(x))}" target="_blank" rel="noopener">Responder por WhatsApp</a>` : ''}
+    </div>
+    <div class="error" id="dError"></div>
+    ${x.ActualizadoPor ? `<div class="meta">Último cambio: ${esc(x.ActualizadoPor)} · ${esc(x.FechaActualizacion)}</div>` : ''}`;
+  $('dGuardar').onclick = () => guardar(x);
+  $('fondo').classList.remove('oculto');
+  $('detalle').classList.remove('oculto');
+}
+
+function cerrarDetalle() {
+  $('fondo').classList.add('oculto');
+  $('detalle').classList.add('oculto');
+}
+
+async function guardar(x) {
+  const btn = $('dGuardar');
+  btn.disabled = true; btn.textContent = 'Guardando…';
+  $('dError').textContent = '';
+  try {
+    const etapa = $('dEtapa').value, notas = $('dNotas').value;
+    const r = await api({ accion: 'actualizar', id: x.Folio, etapa, notas });
+    x.Etapa = etapa; x.Notas = notas;
+    x.ActualizadoPor = cred.usuario;
+    x.FechaActualizacion = r.fecha;
+    pintar();
+    cerrarDetalle();
+  } catch (err) {
+    $('dError').textContent = err.message;
+    btn.disabled = false; btn.textContent = 'Guardar';
+  }
+}
+</script>
+</body>
+</html>
